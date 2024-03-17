@@ -1,6 +1,6 @@
 # Simplism-Stack
 
-Simplism Stack is the on-premises edition of faas.nuage-mal.in
+Simplism Stack is the on-premises edition of [faas.nuage-mal.in](https://faas.nuage-mal.in/)
 
 ## Start
 
