@@ -1,0 +1,60 @@
+services:
+
+  faas:
+    image: k33g/simplism:0.1.3
+    entrypoint: [
+      "/simplism", 
+      "listen", 
+      "?", 
+      "?",
+      "--http-port",
+      "7070",
+      "--log-level",
+      "info",
+      "--information",
+      "faas spawner",
+      "--spawn-mode",
+      "true",
+      "--http-port-auto",
+      "true",
+      "--recovery-path",
+      "/faas-data/recovery.yaml",
+      "--service-discovery",
+      "true",
+      ]
+    environment:
+      - ADMIN_DISCOVERY_TOKEN=bobmorane
+      - ADMIN_SPAWN_TOKEN=billbalantine
+      - ADMIN_REGISTRY_TOKEN=misterming
+      - PRIVATE_REGISTRY_TOKEN=missylangylang
+    volumes:
+      - ./faas-data:/faas-data
+    ports:
+      - 7070:7070
+
+  registry:
+    image: k33g/simplism:0.1.3
+    entrypoint: [
+      "/simplism", 
+      "listen", 
+      "?", 
+      "?",
+      "--http-port",
+      "6060",
+      "--log-level",
+      "info",
+      "--information",
+      "faas registry",
+      "--registry-mode",
+      "true",
+      "--registry-path",
+      "/registry-data",
+      ]
+    environment:
+      - ADMIN_REGISTRY_TOKEN=misterming
+    volumes:
+      - ./registry-data:/registry-data
+    ports:
+      - 6060:6060
+
+
